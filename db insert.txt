@@ -1,0 +1,4 @@
+INSERT INTO `pricing`(`id`, `name`, `price`, `created_at`, `updated_at`) VALUES
+('','bersih_rumah','40000'),
+('','perbaikan_elektronik','70000'),
+('','tukang_kebun','50000')
