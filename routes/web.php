@@ -25,11 +25,6 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\GoogleRegisterController;
 use App\Http\Controllers\ForgotPasswordConfirmationController;
 use App\Http\Controllers\laporanController;
-use Illuminate\Support\Facades\Auth;
-
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\users;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------

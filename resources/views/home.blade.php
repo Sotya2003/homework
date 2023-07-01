@@ -202,7 +202,7 @@
                                 <a href="/home"><img src="image/logofull.png" alt="" width="400"></a>
                             </div>
                     
-                            <form action="" method="post">
+                            <form action="/login" method="post">
                                 @csrf
                                 @if(Session::get('login_failed'))
                                     <div class="alert alert-danger text-center">
