@@ -67,7 +67,7 @@ class LoginController extends Controller
         }
         else
         {
-            return redirect('/login')->with('login_failed',1);
+            return redirect('/home')->with('login_failed',1);
         }
     }
 
