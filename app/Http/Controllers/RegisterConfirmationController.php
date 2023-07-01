@@ -19,7 +19,7 @@ class RegisterConfirmationController extends Controller
         }
         else
         {
-            return redirect('/register');
+            return redirect('/home');
         } 
     }
 
@@ -44,6 +44,7 @@ class RegisterConfirmationController extends Controller
             ],
             [
                 //pesan error
+                Session::flash('register_confirmation_error',1),
                 'confirmation_code.min'=>'Masukkan Kode Verifikasi dengan benar!.',
                 'confirmation_code.required'=>'Kode Verifikasi tidak boleh kosong!.',
             ]
@@ -63,8 +64,8 @@ class RegisterConfirmationController extends Controller
         }
         else
         {
-            Session::flash('verification_failed','1');
-            return view('halaman.registerConfirmation');
+            Session::flash('verification_failed',1);
+            return redirect('/home');
         }
         //simpan data
         //users::create(Session::get('data'));

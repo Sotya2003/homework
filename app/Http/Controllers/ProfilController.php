@@ -21,7 +21,9 @@ class ProfilController extends Controller
         {
             $pesanan=Order::where('worker',Session::get('users')->email)->where('service_status','!=','complete')->where('paid_status','Unpaid')->count();
             Session::flash('worker_notif_pesanan',$pesanan);
-            return view('halaman.dashboard.profil');
+            $img=users::where('email',Session::get('users')->email)->get('img');
+            foreach($img as $img);
+            return view('halaman.dashboard.profil')->with('img',$img);
         }
 
         if (Session::get('users')) 

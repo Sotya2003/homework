@@ -144,9 +144,8 @@
                                                 }
                                               })
                                             });
-                                          </script>
-                                    
-                                        <a class="btn btn-warning w-md" href="/dashboard/pesanan">Kembali</a>
+                                        </script>
+                                        <a class="btn btn-warning w-md" href="javascript:history.back()">Kembali</a>
                                 </div>
                             </div>
                         </div>

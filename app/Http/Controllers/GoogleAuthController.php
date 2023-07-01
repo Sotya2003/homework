@@ -39,10 +39,15 @@ class GoogleAuthController extends Controller
                     'google_id' => $googleUser->id,
                     'permission' => 'user',
                 ]);
+                //update akun user
+                $update=users::where('email',$googleUser->email)->update
+                ([
+                    'google_id' => '123',
+                ]);
                 Session::put('users', $users);
                 Session::flash('google_account_login', 1);
                 Session::forget('google_account_access');
-                return redirect('/home');
+                return redirect('/home'); 
             }
 
             //jika akun manual tidak ada google ada

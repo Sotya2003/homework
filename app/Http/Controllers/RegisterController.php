@@ -61,6 +61,7 @@ class RegisterController extends Controller
             ],
             [
                 //pesan error
+                Session::flash('register_error',1),
                 'name.required'=>'Nama tidak boleh kosong!.',
                 'name.unique'=>'Nama ini sudah terdaftar!.',
                 'email.required'=>'Email tidak boleh kosong!.',
@@ -98,8 +99,9 @@ class RegisterController extends Controller
 
     
         Session::put('email_confirmation_send',$token);
+        Session::flash('register_confirmation_modal',1);
 
-        return redirect('/register/confirmation');
+        return redirect('/home');
     }
 
     /**

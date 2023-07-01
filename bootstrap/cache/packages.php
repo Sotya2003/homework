@@ -10,6 +10,13 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'laravel/breeze' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Breeze\\BreezeServiceProvider',
+    ),
+  ),
   'laravel/sail' => 
   array (
     'providers' => 
@@ -69,6 +76,17 @@
     'aliases' => 
     array (
       'Notify' => 'Mckenziearts\\Notify\\Facades\\LaravelNotify',
+    ),
+  ),
+  'munafio/chatify' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Chatify\\ChatifyServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Chatify' => 'Chatify\\Facades\\ChatifyMessenger',
     ),
   ),
   'nesbot/carbon' => 

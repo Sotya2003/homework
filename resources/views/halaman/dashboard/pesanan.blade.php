@@ -67,16 +67,12 @@
                     @endif
                     <td>
                         @if ($item->paid_status == 'Unpaid' && Session::get('users')->permission=='user')
-                        <a href="/dashboard/invoice?id={{$item->id}}">
-                                <div class="btn btn-primary">
-                                    Bayar
-                                </div>
-                            </a> 
-                            <a href="/dashboard/cancel?id={{$item->id}}">
-                                <div class="btn btn-danger">
-                                    Batalkan
-                                </div>
+                            <a href="/dashboard/invoice?id={{$item->id}}" class="btn btn-primary">
+                                Bayar
                             </a>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#cancel_modal">
+                                Batalkan
+                            </button>
                         @endif
                         @if ($item->paid_status == 'Paid' or Session::get('users')->permission=='worker' or Session::get('users')->permission=='admin')
                         <a href="/dashboard/invoice?id={{$item->id}}">
@@ -105,8 +101,27 @@
                         @endif
                     </td>
                 </tr>
+                <!-- invoice Modal -->
+                <div class="modal fade" id="cancel_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg bg-white">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Batalkan Pesanan</h1>
+                                <i class="fa-solid fa-xmark fa-2xl" data-bs-dismiss="modal" style="color: #ff0000;"></i>
+                            </div>
+                            <div class="modal-body">
+                                Anda yakin untuk membatalkan pesanan ini?
+                                <a class="btn btn-danger" href="/dashboard/cancel?id={{$item->id}}">
+                                    Batalkan
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- invoice Modal -->
+  
                 <!-- status Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content text-center">
                             <div class="modal-header">
@@ -130,7 +145,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -148,7 +163,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -158,7 +173,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -176,7 +191,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -186,7 +201,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -196,7 +211,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -214,7 +229,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -224,7 +239,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">
@@ -234,7 +249,7 @@
                                 </div>
 
                                 <div class="">
-                                    <i class="fa-sharp fa-solid fa-arrow-down"></i>
+                                    <i class="fa-solid fa-arrow-down"></i>
                                 </div>
 
                                 <div class="modal-body">

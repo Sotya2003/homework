@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\users;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
 
 class HomeController extends Controller
@@ -84,7 +85,38 @@ class HomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //simpan data di session
+        Session::flash('email',$request->email);
+        Session::flash('password',$request->password);
+
+        //cek jika ada kolom kosong
+        $request->validate
+        (
+            [
+                'email' =>'required',
+                'password' =>'required',
+            ],
+            [
+                'email.required'=>'Email tidak boleh kosong!.',
+                'password.required'=>'Password tidak boleh kosong!.'
+            ]
+        );
+
+        $data_login=
+        [
+            'email' =>$request->email,
+            'password' =>$request->password
+        ];
+
+        if(Auth::attempt($data_login))
+        {
+            Session::put('users', Auth::user());
+            return redirect('/home')->with('success',$request->email);
+        }
+        else
+        {
+            return redirect('/home')->with('login_failed',1);
+        }
     }
 
     /**

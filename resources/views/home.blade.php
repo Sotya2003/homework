@@ -12,6 +12,45 @@
     </script>
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/2c3f845fef.js" crossorigin="anonymous"></script>
+    <script src="/js/password_reveal.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    @if ($errors->any() or Session::get('login_failed'))
+        <script>
+            $(document).ready(function(){
+                $("#login_modal").modal('show');
+            });
+        </script>
+    @endif
+    @if ($errors->any() && Session::get('register_error'))
+        <script>
+            $(document).ready(function(){
+                $("#register_modal").modal('show');
+            });
+        </script>
+    @endif
+    @if (Session::get('register_confirmation_modal'))
+        <script>
+            $(document).ready(function(){
+                $("#register_confirmation_modal").modal('show');
+            });
+        </script>
+    @endif
+    @if ($errors->any() && Session::get('register_confirmation_error'))
+        <script>
+            $(document).ready(function(){
+                $("#register_confirmation_modal").modal('show');
+            });
+        </script>
+    @endif
+    @if (Session::get('verification_failed'))
+        <script>
+            $(document).ready(function(){
+                $("#register_confirmation_modal").modal('show');
+            });
+        </script>
+    @endif
     @yield('head')
     <title>Home</title>
 </head>
@@ -24,7 +63,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fa-solid fa-bars" style="color: #ffffff;"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -68,8 +107,9 @@
                     @endif
                     @if(!Session::get('users'))
                         <li class="nav-item p-2">
-                            <a class="nav-link text-white home_menu_select {{ (request()->is('login')) ? 'home_menu_selected' : '' }}"
-                                href="/login">Login</a>
+                            <button class="nav-link text-white home_menu_select" data-bs-toggle="modal" data-bs-target="#login_modal">
+                                Login
+                            </button>
                         </li>
                     @endif
                     <li class="nav-item p-2">
@@ -81,7 +121,6 @@
         </div>
     </nav>
     <!-- navbar -->
-
 
     <!-- pesan -->
     <div class="toast-container position-fixed bottom-50 end-0 p-3 notif alert fs-3">
@@ -151,6 +190,256 @@
         </div>
     </div>
     <!-- Modal -->
+
+    <!-- login Modal -->
+    <div class="modal fade" id="login_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="background-color: #0081C9">
+                <div class="modal-body">
+                    <div class="">
+                        <div class="text-white">
+                            <div class="text-center">
+                                <a href="/home"><img src="image/logofull.png" alt="" width="400"></a>
+                            </div>
+                    
+                            <form action="" method="post">
+                                @csrf
+                                @if(Session::get('login_failed'))
+                                    <div class="alert alert-danger text-center">
+                                        Email atau Password salah.
+                                    </div>
+                                @endif
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach($errors->all() as $item)
+                                                <li>
+                                                    {{ $item }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                                        placeholder="Contoh : seseorang@email.com"
+                                        value="{{ Session::get('email') }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <div class="input-group">
+                                        <input name="password" type="password" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Aman, password dienkripsi kok :)"
+                                            value="{{ Session::get('password') }}">
+                                        <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="btn" onclick="lihat_password()"></i></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <a class="text-white" href="/forgot">Lupa Password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row align-items-start">
+                                        <div class="mb-3 col d-flex justify-content-center">
+                                            <div>
+                                                <button type="submit" class="btn btn-info">
+                                                    <div class="text-white fw-bold fs-5">LOGIN</div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            Atau gunakan
+                                            <div class="d-flex justify-content-center p-2">
+                                                <div class="bg-white border rounded shadow">
+                                                    <a href="/auth/google">
+                                                        <img src="/image/icon/g-logo.gif" alt="" width="70">
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <div>
+                                            <br>
+                                            <a class="text-white" data-bs-toggle="modal" href="#register_modal">Belum memiliki akun? Buat akun.</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- login Modal -->
+
+    <!-- register Modal -->
+    <div class="modal fade" id="register_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="background-color: #0081C9">
+                <div class="modal-body">
+                    <div class="text-white">
+                        <div class="text-center">
+                            <img src="image/logofull.png" alt="" width="400">
+                        </div>
+                
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $item)
+                                        <li>
+                                            {{ $item }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                
+                        <form action="/register" method="post">
+                            @csrf
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nama</span>
+                                <input name="name" type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Contoh : AryaSotya"
+                                    value="{{ Session::get('name') }}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Email</span>
+                                <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Contoh : seseorang@email.com"
+                                    value="{{ Session::get('email') }}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nomor Telepon</span>
+                                <input name="no_telp" type="number" class="form-control" aria-describedby="emailHelp"
+                                    placeholder="Contoh : 628123456789, tanpa '0'"
+                                    value="{{ Session::get('no_telp') }}">
+                                </div>
+                                <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Password</span>
+                                <input name="password" type="password" class="form-control" id="exampleInputPassword2"
+                                    placeholder="Aman, password dienkripsi kok :)"
+                                    value="{{ Session::get('password') }}">
+                                <span class="input-group-text"><i class="fa-solid fa-eye-slash" id="btn2" onclick="lihat_password2()"></i></span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <a class="text-white" data-bs-toggle="modal" href="#login_modal">Sudah memiliki akun?</a>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="p-3">
+                                    <button type="submit" class="text-white fs-5 fw-bold btn btn-info"><i class="fa-solid fa-paper-plane"></i> Dapatkan Kode Verifikasi</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="text-center">
+                            Atau gunakan
+                            <div class="d-flex justify-content-center p-2">
+                                <div class="bg-white border rounded shadow">
+                                    <a href="/auth/google">
+                                        <img src="/image/icon/g-logo.gif" alt="" width="70">
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" href="#login_modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- register Modal -->
+
+    <!-- register confirmation Modal -->
+    <div class="modal fade" id="register_confirmation_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="background-color: #0081C9">
+                <div class="modal-body">
+                    <div class="text-white">
+                        <div class="text-center">
+                            <img src="/image/logofull.png" alt="" width="400">
+                        </div>
+                        @if(Session::get('confirmation_code'))
+                            <div class="alert alert-success text-center">
+                                Kode Konfirmasi Telah Terkirim Ke Email {{ Session::get('email') }}
+                            </div>
+                        @endif
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $item)
+                                        <li>
+                                            {{ $item }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if(Session::get('verification_failed'))
+                            <div class="alert alert-danger text-center">
+                                Kode Konfirmasi salah!.
+                            </div>
+                        @endif
+                        <form action="/register/confirmation" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nama</label>
+                                <input @if (Session::get('email_confirmation_send')) {{ 'disabled' }} @endif
+                                    name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    value="{{ Session::get('name') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Email</label>
+                                <input @if (Session::get('email_confirmation_send')) {{ 'disabled' }} @endif
+                                    name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                    placeholder="Contoh : seseorang@email.com"
+                                    value="{{ Session::get('email') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Nomor Telepon</label>
+                                <input @if (Session::get('email_confirmation_send')) {{ 'disabled' }} @endif
+                                    name="no_telp" type="number" class="form-control" aria-describedby="emailHelp"
+                                    placeholder="Contoh : 628123456789, tanpa '0'"
+                                    value="{{ Session::get('no_telp') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <input @if (Session::get('email_confirmation_send')) {{ 'disabled' }} @endif
+                                    name="password" type="password" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Aman, password dienkripsi kok :)"
+                                    value="{{ Session::get('password') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Kode Verifikasi</label>
+                                <input name="confirmation_code" type="number" class="form-control" id="exampleInputPassword1"
+                                    placeholder="Cek Email">
+                            </div>
+                            <div class="mb-3 col d-flex justify-content-center">
+                                <div>
+                                    <button type="submit" class="btn btn-info">
+                                        <div class="text-white fw-bold fs-5">DAFTAR</div>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" href="#login_modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- register confirmation Modal -->
 
     <!-- Footer -->
     <div>
