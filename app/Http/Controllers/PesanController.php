@@ -122,6 +122,11 @@ class PesanController extends Controller
                         'order_id' => $order->id,
                         'gross_amount' => $total_price,
                     ),
+                    'item_details' => array(
+                        'price' => $order->price,
+                        'quantity' => $order->qty,
+                        'name' => $order->item,
+                    ),
                     'customer_details' => array(
                         'first_name' => Session::get('users')->name,
                         'last_name' => '',

@@ -116,7 +116,6 @@
                             </div><!-- end table responsive -->
                             <div class="d-print-none mt-4">
                                 <div class="float-end">
-                                    
                                         @if (Session::get('users')->permission=='user' && $data->paid_status=='Unpaid')
                                             <button id="pay-button" class="btn btn-primary w-md">Bayar Sekarang</button>
                                         @endif

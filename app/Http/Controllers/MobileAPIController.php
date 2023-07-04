@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\users;
 
@@ -12,7 +13,7 @@ class MobileAPIController extends Controller
      */
     public function index()
     {
-        $data=(['data' => users::all()]);
+        $data=(['data' => Order::all()]);
         return $data;
     }
 
