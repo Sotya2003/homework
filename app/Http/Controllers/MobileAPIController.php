@@ -20,9 +20,10 @@ class MobileAPIController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function akun()
     {
-        //
+        $data=(['data' => users::all()]);
+        return $data;
     }
 
     /**

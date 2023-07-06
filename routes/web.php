@@ -7,7 +7,6 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\cancelController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\EditController;
 use App\Http\Controllers\RegisterController;
@@ -15,7 +14,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DependentDropdownController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LayananController;
 use App\Http\Controllers\riwayatTransaksiController;
 use App\Http\Controllers\KelolaAkunController;
 use App\Http\Controllers\MobileAPIController;
@@ -68,7 +66,10 @@ Route::resource('register/confirmation/', RegisterConfirmationController::class)
 Route::resource('forgot/confirmation/', ForgotPasswordConfirmationController::class);
 
 //Mobile API
-Route::resource('mobile/', MobileAPIController::class);
+Route::resource('mobile/pesanan', MobileAPIController::class);
+
+//Mobile API
+Route::get('mobile/akun', [MobileAPIController::class,'akun']);
 
 //dashboard Kelola Akun
 Route::resource('dashboard/kelola-akun/', KelolaAkunController::class);
