@@ -9,20 +9,10 @@
 <div class="container text-center mb-5">
     <div class="row gap-5">
         <div class="col align-self-start" style="text-align: justify;">
-            &emsp;Kepuasan Anda, Adalah prioritas Kami
-            Homework adalah platform gaya hidup berbasis teknologi yang berfokus pada layanan perhotelan. Didirikan pada
-            tahun 2xxx, Kami bertujuan untuk membantu masyarakat mencapai kualitas hidup yang lebih baik dengan memberikan
-            layanan yang unggul untuk menjadi asisten kebutuhan rumah Anda.
+            &emsp;HOMEWORK adalah platform berbasis teknologi yang berfokus pada layanan servis rumah. Didirikan pada tahun 2023. Kami bertujuan untuk membantu orang mencapai kualitas hidup yang lebih baik dengan memberikan layanan yang unggul untuk menjadi asisten kebutuhan rumah anda.
         </div>
         <div class="col align-self-end" style="text-align: justify;">
-            &emsp;Dengan memanfaatkan teknologi solusi inovatif dan manajemen sumber daya manusia, kami membuat kehidupan
-            pelanggan menjadi lebih baik dan lebih baik setiap hari. Kami mendorong orang untuk menghabiskan waktu mereka
-            pada hal-hal yang lebih bermakna karena kami percaya bahwa waktu adalah sumber yang terbatas. :D 
-        </div>
-        <div class="col align-self-start" style="text-align: justify;">
-            &emsp;Saat Anda menggunakan Homework, Anda membantu mitra kami serta kualitas hidup mereka & hak mereka sebagai
-            manusia. Sebanyak kami peduli dengan hak mitra kami, kami bertekad untuk menciptakan pekerjaan yang stabil dan
-            berkualitas serta pendapatan yang lebih baik untuk mereka.
+            &emsp;Dengan memanfaatkan teknologi solusi inovatif dan manajemen sumber daya manusia, kami membuat kehidupan pelanggan kami lebih baik dan lebih baik setiap hari. Kami mendorong orang untuk menghabiskan waktu mereka pada hal-hal yang lebih bermakna karena kami percaya bahwa waktu adalah sumber yang terbatas.
         </div>
     </div>
 </div>

@@ -150,7 +150,7 @@
         @endif
     </div>
     <!-- pesan -->
-
+    
     <!-- konten -->
     @yield('konten')
     <!-- konten -->

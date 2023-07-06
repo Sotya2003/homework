@@ -6,17 +6,6 @@
 @endsection
 
 @section('konten')
-<div class="p-4">
-    <div class="text-center text-white bg-danger border rounded p-1">
-        <div>
-            <h1>Pemberitahuan</h1>
-            
-        </div>
-        <div>
-            Jika terdapat error atau bug. Harap melapor :).
-        </div>
-    </div>
-</div>
 
 <!-- SlideShow -->
 <div class="p-4">
