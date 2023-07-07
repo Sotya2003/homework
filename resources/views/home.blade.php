@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    @if ($errors->any() or Session::get('login_failed'))
+    @if ($errors->any())
+        <script>
+            $(document).ready(function(){
+                $("#login_modal").modal('show');
+            });
+        </script>
+    @endif
+    @if (Session::get('pesan_need_login'))
         <script>
             $(document).ready(function(){
                 $("#login_modal").modal('show');
@@ -116,6 +123,10 @@
                         <a class="nav-link text-white home_menu_select {{ (request()->is('tentang-kami')) ? 'home_menu_selected' : '' }}"
                             href="/tentang-kami">Tentang Kami</a>
                     </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link text-white home_menu_select {{ (request()->is('download')) ? 'home_menu_selected' : '' }}"
+                            href="/download">Unduh</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -209,7 +220,12 @@
                                         Email atau Password salah.
                                     </div>
                                 @endif
-                                @if($errors->any())
+                                @if(Session::get('pesan_need_login'))
+                                    <div class="alert alert-danger text-center">
+                                        Silahkan Login terlebih dahulu.
+                                    </div>
+                                @endif
+                                @if($errors->any() && !Session::get('login_failed'))
                                     <div class="alert alert-danger">
                                         <ul>
                                             @foreach($errors->all() as $item)

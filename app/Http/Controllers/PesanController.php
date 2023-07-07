@@ -23,8 +23,8 @@ class PesanController extends Controller
         }
         else
         {
-            Session::get('login_failed',1);
-            return redirect('home/'); 
+            Session::flash('pesan_need_login',1);
+            return redirect('layanan/'); 
         }
     }
 
