@@ -125,7 +125,7 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link text-white home_menu_select {{ (request()->is('download')) ? 'home_menu_selected' : '' }}"
-                            href="/download">Unduh</a>
+                            href="https://drive.google.com/open?id=13ZpDF67sVxrSOfxNMtkYkfkw4w6X4xTJ&usp=drive_fs">Unduh APK</a>
                     </li>
                 </ul>
             </div>
